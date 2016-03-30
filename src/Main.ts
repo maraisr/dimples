@@ -1,6 +1,8 @@
+/// <reference path="../typings/main.d.ts" />
+
 import jade = require('jade');
 
-export class Test {
+export class Templicated {
 	constructor() {
 		console.log(jade);
 	}

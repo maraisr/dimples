@@ -1,9 +1,9 @@
 "use strict";
 var jade = require('jade');
-var Test = (function () {
-    function Test() {
+var Templicated = (function () {
+    function Templicated() {
         console.log(jade);
     }
-    return Test;
+    return Templicated;
 }());
-exports.Test = Test;
+exports.Templicated = Templicated;
