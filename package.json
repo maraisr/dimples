@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/maraisr/templicated/issues"
   },
-  "homepage": "https://github.com/maraisr/templicated#readme"
+  "homepage": "https://github.com/maraisr/templicated#readme",
+  "dependencies": {
+    "jade": "^1.11.0"
+  }
 }
