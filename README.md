@@ -12,7 +12,7 @@ A build and dev step that takes HAML, Jade or HTML preprocessed templates to use
 - `npm i typings -g`
 - `npm i`
 - `typings i`
-- `tsc`
+- `npm run build`
 
 ## License
 [GPL-2.0](https://github.com/maraisr/templicated/blob/master/LICENSE.md)

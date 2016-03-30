@@ -1,22 +1,23 @@
 {
-  "name": "templicated",
-  "version": "0.0.1",
-  "description": "A build and dev step that takes HAML, Jade or HTML preprocessed templates to use in JavaScript apps.",
-  "main": "dist/templicated.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/maraisr/templicated.git"
-  },
-  "author": "Marais Rossouw",
-  "license": "GPL-2.0",
-  "bugs": {
-    "url": "https://github.com/maraisr/templicated/issues"
-  },
-  "homepage": "https://github.com/maraisr/templicated#readme",
-  "dependencies": {
-    "jade": "^1.11.0"
-  }
+	"name": "templicated",
+	"version": "0.0.1",
+	"description": "A build and dev step that takes HAML, Jade or HTML preprocessed templates to use in JavaScript apps.",
+	"main": "dist/Main.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/maraisr/templicated.git"
+	},
+	"author": "Marais Rossouw",
+	"license": "GPL-2.0",
+	"bugs": {
+		"url": "https://github.com/maraisr/templicated/issues"
+	},
+	"homepage": "https://github.com/maraisr/templicated#readme",
+	"dependencies": {
+		"jade": "^1.11.0"
+	}
 }
