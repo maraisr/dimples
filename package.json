@@ -1,7 +1,7 @@
 {
 	"name": "templicated",
 	"version": "0.0.1",
-	"description": "A build and dev step that takes HAML, Jade or HTML preprocessed templates to use in JavaScript apps.",
+	"description": "A build and dev step that takes Jade preprocessed HTML templates to use in JavaScript apps.",
 	"main": "dist/Main.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
