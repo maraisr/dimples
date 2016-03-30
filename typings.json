@@ -1,11 +1,12 @@
 {
-  "name": "templicated",
-  "version": false,
-  "dependencies": {
-    "graceful-fs": "registry:npm/graceful-fs#4.0.0+20160211003958"
-  },
-  "ambientDependencies": {
-    "jade": "registry:dt/jade#0.0.0+20160316155526",
-    "node": "registry:dt/node#4.0.0+20160319033040"
-  }
+	"name": "templicated",
+	"version": false,
+	"dependencies": {
+		"graceful-fs": "registry:npm/graceful-fs#4.0.0+20160211003958"
+	},
+	"ambientDependencies": {
+		"acorn": "registry:dt/acorn#1.0.1+20160317120654",
+		"jade": "registry:dt/jade#0.0.0+20160316155526",
+		"node": "registry:dt/node#4.0.0+20160319033040"
+	}
 }
