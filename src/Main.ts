@@ -22,14 +22,9 @@ export class Templicated {
 	}
 
 	private getViews(): Array<View> {
-
-		let returns = new Array();
-
-		fs.readdirSync(this.config.views).forEach((path) => {
-			returns.push(new View(path, this.config));
-		})
-
-		return returns;
+		return fs.readdirSync(this.config.views).map((path) => {
+			return new View(path, this.config);
+		});
 	}
 }
 
@@ -37,9 +32,9 @@ class View {
 	private path: string;
 
 	public compiled: string;
-	public name:string;
+	public name: string;
 
-	public uid:number;
+	public uid: number;
 
 	constructor(path: string, config: Config) {
 		this.path = path;

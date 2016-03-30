@@ -1,3 +1,4 @@
+/// <reference path="../typings/main.d.ts" />
 "use strict";
 var jade = require('jade');
 var fs = require('graceful-fs');
@@ -10,11 +11,9 @@ var Templicated = (function () {
     }
     Templicated.prototype.getViews = function () {
         var _this = this;
-        var returns = new Array();
-        fs.readdirSync(this.config.views).forEach(function (path) {
-            returns.push(new View(path, _this.config));
+        return fs.readdirSync(this.config.views).map(function (path) {
+            return new View(path, _this.config);
         });
-        return returns;
     };
     return Templicated;
 }());

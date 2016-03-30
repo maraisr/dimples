@@ -5,7 +5,7 @@
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"noImplicitAny": false,
-		"removeComments": true,
+		"removeComments": false,
 		"sourceMap": false,
 		"outDir": "dist/"
 	},
