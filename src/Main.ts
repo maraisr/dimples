@@ -1,9 +1,6 @@
 /// <reference path="../typings/main.d.ts" />
 
 import fs = require('graceful-fs');
-import parser = require('acorn');
-
-import util = require('util');
 
 import {Config} from './Common';
 
@@ -22,23 +19,8 @@ export class Templicated {
 	}
 
 	private compile(): Buffer {
-		let parsed = new Parse(this.source);
 
-		console.log(parsed.findTpls());
 
 		return new Buffer('');
-	}
-}
-
-
-class Parse {
-	private parsed: any;
-
-	constructor(source: Buffer) {
-		this.parsed = parser.parse(source.toString('utf-8')).body;
-	}
-
-	public findTpls(): Array<string> {
-		return new Array();
 	}
 }
