@@ -1,5 +1,9 @@
 {
   "name": "templicated",
   "version": false,
-  "dependencies": {}
+  "dependencies": {},
+  "ambientDependencies": {
+    "jade": "registry:dt/jade#0.0.0+20160316155526",
+    "node": "registry:dt/node#4.0.0+20160319033040"
+  }
 }
