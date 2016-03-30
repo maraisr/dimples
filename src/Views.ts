@@ -3,6 +3,11 @@ import fs = require('graceful-fs');
 
 import {Config} from './Common';
 
+export interface ViewInterface {
+	name: string;
+	compiled: string;
+}
+
 export default class Views {
 	private config: Config;
 	private views: Array<View>;
@@ -13,13 +18,20 @@ export default class Views {
 	}
 
 	private init(): Array<View> {
+		// TODO: Need this.config.views to also allow glob file matching
 		return fs.readdirSync(this.config.views).map((path) => {
 			return new View(path, this.config);
 		});
 	}
+
+	find(name: string): View {
+		return this.views.filter((v: View): boolean => {
+			return v.name == name;
+		}).pop();
+	}
 }
 
-class View {
+class View implements ViewInterface {
 	private path: string;
 
 	public compiled: string;

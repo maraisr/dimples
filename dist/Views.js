@@ -8,9 +8,15 @@ var Views = (function () {
     }
     Views.prototype.init = function () {
         var _this = this;
+        // TODO: Need this.config.views to also allow glob file matching
         return fs.readdirSync(this.config.views).map(function (path) {
             return new View(path, _this.config);
         });
+    };
+    Views.prototype.find = function (name) {
+        return this.views.filter(function (v) {
+            return v.name == name;
+        }).pop();
     };
     return Views;
 }());
