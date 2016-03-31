@@ -5,7 +5,7 @@ Templicated
 [![License](https://img.shields.io/npm/l/templicated.svg?style=flat-square)](https://github.com/maraisr/templicated/blob/master/LICENSE.md)
 
 ## Intro
-A build and dev step that takes Jade preprocessed HTML templates to use in JavaScript apps. Because I found I't was way to difficult to get templates in smallish JS apps, mainly when using Vuw.
+A build and dev step that takes [Jade](http://jade-lang.com/) preprocessed HTML templates to use in JavaScript apps. Because I found I't was way to difficult to get templates in smallish JS apps, mainly when using [Vue](http://vuejs.org/).
 
 This project is work inprogress.
 
