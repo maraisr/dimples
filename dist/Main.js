@@ -3,37 +3,35 @@
 var Views_1 = require('./Views');
 var Templicated = (function () {
     function Templicated(source, config) {
-        this.source = source;
+        this.source = source.toString('utf-8');
         this.config = config;
         this.views = new Views_1.default(this.config);
     }
     Templicated.prototype.compile = function () {
-        var _this = this;
-        // Find the views needed
-        var re = /templicated\([\'\"]([\w\s]+)[\'\"]\)/gm, m;
-        var sourceString = this.source.toString('utf-8'), viewFilesFound = new Array();
-        while ((m = re.exec(sourceString)) !== null) {
+        var re = /['"]@tpl\.(.+)['"]/gm, m;
+        var viewFilesFound = new Array();
+        while ((m = re.exec(this.source)) !== null) {
             if (m.index === re.lastIndex) {
                 re.lastIndex++;
             }
-            viewFilesFound.push(m[1]);
-        }
-        var viewsList = {};
-        // Look for the views found, in our original found jade templates
-        viewFilesFound.forEach(function (file) {
-            var found = _this.views.find(file);
-            if (found) {
-                // 1. Replace found.name with found.mangle
-                sourceString = sourceString.replace(new RegExp("templicated\\(['\"]" + found.name + "['\"]\\)", 'gm'), 'templicated(\'' + found.mangle + '\')');
-                // 2. Insert found.mangle as a index
-                // 3. Add the found.compiled as a template
-                viewsList[found.mangle] = found.compiled;
+            if (m[1]) {
+                viewFilesFound.push(this.views.find(m[1]));
             }
+        }
+        return this.sourceAugment(viewFilesFound);
+    };
+    Templicated.prototype.sourceAugment = function (views) {
+        var _this = this;
+        var tplFunc = function () {
+            return "\n\t\t\t\tvar $templicated = (function() {\n\t\t\t\t\tfunction Templicated(tpls) {\n\t\t\t\t\t\tthis.tpls = tpls;\n\t\t\t\t\t}\n\n\t\t\t\t\tTemplicated.prototype['get'] = function(which) {\n\t\t\t\t\t\treturn this.tpls[which];\n\t\t\t\t\t}\n\n\t\t\t\t\treturn new Templicated(" + JSON.stringify(views.reduce(function (r, view) {
+                return r[view.mangle] = view.compiled, r;
+            }, {})) + ");\n\t\t\t\t})();\n\t\t\t";
+        }().toString();
+        views.forEach(function (view) {
+            _this.source = _this.source.replace(new RegExp('[\'"]@tpl\\.' + view.name + '[\'"]', 'g'), '$templicated.get(\'' + view.mangle + '\')');
         });
-        var func = 'function templicated(id) {return tpls[id];}';
-        var tpls = 'var tpls = ' + JSON.stringify(viewsList);
-        var final = tpls + ';' + func;
-        return new Buffer(final + ';' + sourceString);
+        this.source = tplFunc + this.source;
+        return new Buffer(this.source);
     };
     return Templicated;
 }());

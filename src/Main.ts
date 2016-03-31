@@ -7,53 +7,61 @@ import {Config} from './Common';
 import Views, {ViewInterface} from './Views';
 
 export class Templicated {
-	private source: Buffer;
+	private source: string;
 	private config: Config;
 	public views: Views;
 
 	constructor(source: Buffer, config: Config) {
-		this.source = source;
+		this.source = source.toString('utf-8');
 		this.config = config;
 
 		this.views = new Views(this.config);
 	}
 
-	private compile(): Buffer {
-		// Find the views needed
-		let re: RegExp = /templicated\([\'\"]([\w\s]+)[\'\"]\)/gm,
+	compile(): Buffer {
+		let re: RegExp = /['"]@tpl\.(.+)['"]/gm,
 			m: RegExpExecArray;
 
-		let sourceString: string = this.source.toString('utf-8'),
-			viewFilesFound: Array<string> = new Array();
+		let viewFilesFound: Array<ViewInterface> = new Array();
 
-		while ((m = re.exec(sourceString)) !== null) {
+		while ((m = re.exec(this.source)) !== null) {
 			if (m.index === re.lastIndex) {
 				re.lastIndex++;
 			}
 
-			viewFilesFound.push(<string>m[1]);
+			if (<string>m[1]) {
+				viewFilesFound.push(this.views.find(<string>m[1]));
+			}
 		}
 
-		var viewsList: any = {};
+		return this.sourceAugment(viewFilesFound);
+	}
 
-		// Look for the views found, in our original found jade templates
-		viewFilesFound.forEach((file: string) => {
-			var found: ViewInterface = this.views.find(file);
+	private sourceAugment(views: Array<ViewInterface>): Buffer {
+		var tplFunc: string = function() {
+			return `
+				var $templicated = (function() {
+					function Templicated(tpls) {
+						this.tpls = tpls;
+					}
 
-			if (found) {
-				// 1. Replace found.name with found.mangle
-				sourceString = sourceString.replace(new RegExp(`templicated\\([\'\"]${found.name}[\'\"]\\)`, 'gm'), 'templicated(\'' + found.mangle + '\')');
-				// 2. Insert found.mangle as a index
-				// 3. Add the found.compiled as a template
-				viewsList[found.mangle] = found.compiled;
-			}
+					Templicated.prototype['get'] = function(which) {
+						return this.tpls[which];
+					}
+
+					return new Templicated(${JSON.stringify(views.reduce((r: any, view: ViewInterface) => {
+						return r[view.mangle] = view.compiled, r;
+					}, {}))});
+				})();
+			`;
+		} ().toString();
+
+		views.forEach((view:ViewInterface) => {
+			this.source = this.source.replace(new RegExp('[\'"]@tpl\\.'+view.name+'[\'"]', 'g'), '$templicated.get(\''+view.mangle+'\')');
 		});
 
-		var func = 'function templicated(id) {return tpls[id];}';
-		var tpls = 'var tpls = ' + JSON.stringify(viewsList);
+		this.source = tplFunc + this.source;
 
-		var final = tpls + ';' +func;
-
-		return new Buffer(final + ';' + sourceString);
+		return new Buffer(this.source);
 	}
 }

@@ -19,8 +19,7 @@ var input = new Buffer('console.log(templicated('my component'))'); // It's a bu
 ```
 
 ### Build
-- `npm i tsc -g`
-- `npm i typings -g`
+- `npm i tsc typings -g`
 - `npm i`
 - `typings i`
 - `npm run build`
