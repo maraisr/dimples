@@ -28,5 +28,20 @@ var View = (function () {
         this.compiled = jade.compile(fs.readFileSync(config.views + this.path, 'utf-8'))();
         this.name = this.path.replace(/\.jade/, '').trim();
     }
+    Object.defineProperty(View.prototype, "mangle", {
+        get: function () {
+            var hash = 0, i, chr, len;
+            if (this.name.length === 0)
+                return hash;
+            for (i = 0, len = this.name.length; i < len; i++) {
+                chr = this.name.charCodeAt(i);
+                hash = ((hash << 5) - hash) + chr;
+                hash |= 0;
+            }
+            return Math.abs(hash);
+        },
+        enumerable: true,
+        configurable: true
+    });
     return View;
 }());

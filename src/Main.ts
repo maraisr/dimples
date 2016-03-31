@@ -40,6 +40,9 @@ export class Templicated {
 
 			// TODO: Inject the views I need to, and "mangle" the view names and so forth
 			if (found) {
+				// 1. Replace found.name with found.mangle
+				// 2. Insert found.mangle as a index
+				// 3. Add the found.compiled as a template
 			}
 		});
 

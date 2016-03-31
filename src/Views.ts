@@ -6,6 +6,7 @@ import {Config} from './Common';
 export interface ViewInterface {
 	name: string;
 	compiled: string;
+	mangle: number;
 }
 
 export default class Views {
@@ -43,5 +44,22 @@ class View implements ViewInterface {
 		this.compiled = jade.compile(fs.readFileSync(config.views + this.path, 'utf-8'))();
 
 		this.name = this.path.replace(/\.jade/, '').trim();
+	}
+
+	get mangle(): number {
+		let hash: number = 0,
+			i: number,
+			chr: number,
+			len: number;
+
+		if (this.name.length === 0) return hash;
+
+		for (i = 0, len = this.name.length; i < len; i++) {
+			chr = this.name.charCodeAt(i);
+			hash = ((hash << 5) - hash) + chr;
+			hash |= 0;
+		}
+
+		return Math.abs(hash);
 	}
 }
