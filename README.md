@@ -7,7 +7,7 @@ Templicated
 ## Intro
 A build step that manages [Jade templates](http://jade-lang.com/) for use in JavaScript applications. [DEMO](https://github.com/maraisr/waybackthen)
 
-## Example Usuage
+## Example build step
 ```JavaScript
 var input = new Buffer('console.log("@tpl.Master")');
 
@@ -16,12 +16,14 @@ var code = (new t.Templicated(input, {views: './views/'})).code;
 // In the "views" directory, I'd have a Master.jade file.
 ```
 
-## Exmaple Usuage using Vue
+## Exmaple usuage with Vue
 ```JavaScript
 var vm = new Vue({
 	el: '#app',
 	template: '@tpl.Master'
 });
+
+// And then this file ran through Templicated
 ```
 
 ## API
