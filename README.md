@@ -13,7 +13,7 @@ var input = new Buffer('console.log("@tpl.Master")');
 
 var code = (new t.Templicated(input, {views: './views/'})).code;
 
-// In the "views" directory, I'd have a Master.jade" file.
+// In the "views" directory, I'd have a Master.jade file.
 ```
 
 ## Exmaple Usuage using Vue
