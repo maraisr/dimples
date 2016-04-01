@@ -33,6 +33,13 @@ var Templicated = (function () {
         this.source = tplFunc + this.source;
         return new Buffer(this.source);
     };
+    Object.defineProperty(Templicated.prototype, "code", {
+        get: function () {
+            return this.compile().toString();
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Templicated;
 }());
 exports.Templicated = Templicated;

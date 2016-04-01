@@ -56,12 +56,16 @@ var $templicated = (function() {
 			`);
 		} ().toString();
 
-		views.forEach((view:ViewInterface) => {
-			this.source = this.source.replace(new RegExp('[\'"]@tpl\\.'+view.name+'[\'"]', 'g'), '$templicated.get(\''+view.mangle+'\')');
+		views.forEach((view: ViewInterface) => {
+			this.source = this.source.replace(new RegExp('[\'"]@tpl\\.' + view.name + '[\'"]', 'g'), '$templicated.get(\'' + view.mangle + '\')');
 		});
 
 		this.source = tplFunc + this.source;
 
 		return new Buffer(this.source);
+	}
+
+	get code(): string {
+		return this.compile().toString();
 	}
 }
