@@ -7,6 +7,11 @@ Templicated
 ## Intro
 A build step that manages [Jade templates](http://jade-lang.com/) for use in JavaScript applications. [DEMO](https://github.com/maraisr/waybackthen)
 
+## Installation
+```sh
+npm i templicated --save
+```
+
 ## Example build step
 ```JavaScript
 var input = 'console.log("@tpl.Master")';
