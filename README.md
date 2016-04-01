@@ -5,18 +5,36 @@ Templicated
 [![License](https://img.shields.io/npm/l/templicated.svg?style=flat-square)](https://github.com/maraisr/templicated/blob/master/LICENSE.md)
 
 ## Intro
-A build and dev step that takes [Jade](http://jade-lang.com/) preprocessed HTML templates to use in JavaScript apps. Because I found I't was way to difficult to get templates in smallish JS apps, mainly when using [Vue](http://vuejs.org/).
+A build step that manages [Jade templates](http://jade-lang.com/) for use in JavaScript applications. [DEMO](https://github.com/maraisr/waybackthen)
 
-This project is work inprogress.
-
-## Example
+## Example Usuage
 ```JavaScript
-var input = new Buffer('console.log("@tpl.Master")'); // It's a buffer because, that is what node.readFileSync would give me
+var input = new Buffer('console.log("@tpl.Master")');
 
-(new t.Templicated(input, {views: './views/'})).compile(); // Returns a node Buffer with the new source file
+var code = (new t.Templicated(input, {views: './views/'})).code;
 
 // In the "views" directory, I'd have a Master.jade" file.
 ```
+
+## Exmaple Usuage using Vue
+```JavaScript
+var vm = new Vue({
+	el: '#app',
+	template: '@tpl.Master'
+});
+```
+
+## API
+
+### constructor(input: Buffer, options: Config)
+`Input` is a Buffer of the source JavaScript
+`options` is an object containing 1 required property: `views` which is the directory of where to start finding templates.
+
+#### .compile(void): Buffer
+Returns a Buffer of the new source with Jade templates.
+
+#### .code: string
+Returns a string of the new source with Jade templates.
 
 ### Build
 - `npm i tsc typings -g`
