@@ -1,6 +1,6 @@
 {
   "name": "templicated",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A build and dev step that takes Jade preprocessed HTML templates to use in JavaScript apps.",
   "main": "dist/Main.js",
   "scripts": {
