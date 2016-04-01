@@ -3,7 +3,7 @@
 var Views_1 = require('./Views');
 var Templicated = (function () {
     function Templicated(source, config) {
-        this.source = source.toString('utf-8');
+        this.source = (source instanceof Buffer) ? source.toString('utf-8') : source;
         this.config = config;
         this.views = new Views_1.default(this.config);
     }

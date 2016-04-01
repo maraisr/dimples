@@ -9,7 +9,7 @@ A build step that manages [Jade templates](http://jade-lang.com/) for use in Jav
 
 ## Example build step
 ```JavaScript
-var input = new Buffer('console.log("@tpl.Master")');
+var input = 'console.log("@tpl.Master")';
 
 var code = (new t.Templicated(input, {views: './views/'})).code;
 
@@ -28,8 +28,8 @@ var vm = new Vue({
 
 ## API
 
-### constructor(input: Buffer, options: Config)
-`Input` is a Buffer of the source JavaScript
+### constructor(input: Buffer|string, options: Config)
+`input` is either a Buffer or a string of the source JavaScript
 `options` is an object containing 1 required property: `views` which is the directory of where to start finding templates.
 
 #### .compile(void): Buffer

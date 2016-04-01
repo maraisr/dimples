@@ -11,8 +11,8 @@ export class Templicated {
 	private config: Config;
 	public views: Views;
 
-	constructor(source: Buffer, config: Config) {
-		this.source = source.toString('utf-8');
+	constructor(source: Buffer|string, config: Config) {
+		this.source = (source instanceof Buffer) ?  source.toString('utf-8') : source;
 		this.config = config;
 
 		this.views = new Views(this.config);
