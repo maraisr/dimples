@@ -39,21 +39,21 @@ export class Templicated {
 
 	private sourceAugment(views: Array<ViewInterface>): Buffer {
 		var tplFunc: string = function() {
-			return `
-				var $templicated = (function() {
-					function Templicated(tpls) {
-						this.tpls = tpls;
-					}
+			return (`
+var $templicated = (function() {
+	function Templicated(tpls) {
+		this.tpls = tpls;
+	}
 
-					Templicated.prototype['get'] = function(which) {
-						return this.tpls[which];
-					}
+	Templicated.prototype['get'] = function(which) {
+		return this.tpls[which];
+	}
 
-					return new Templicated(${JSON.stringify(views.reduce((r: any, view: ViewInterface) => {
-						return r[view.mangle] = view.compiled, r;
-					}, {}))});
-				})();
-			`;
+	return new Templicated(${JSON.stringify(views.reduce((r: any, view: ViewInterface) => {
+		return r[view.mangle] = view.compiled, r;
+	}, {}))});
+})();
+			`);
 		} ().toString();
 
 		views.forEach((view:ViewInterface) => {

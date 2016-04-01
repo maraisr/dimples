@@ -23,9 +23,9 @@ var Templicated = (function () {
     Templicated.prototype.sourceAugment = function (views) {
         var _this = this;
         var tplFunc = function () {
-            return "\n\t\t\t\tvar $templicated = (function() {\n\t\t\t\t\tfunction Templicated(tpls) {\n\t\t\t\t\t\tthis.tpls = tpls;\n\t\t\t\t\t}\n\n\t\t\t\t\tTemplicated.prototype['get'] = function(which) {\n\t\t\t\t\t\treturn this.tpls[which];\n\t\t\t\t\t}\n\n\t\t\t\t\treturn new Templicated(" + JSON.stringify(views.reduce(function (r, view) {
+            return ("\nvar $templicated = (function() {\n\tfunction Templicated(tpls) {\n\t\tthis.tpls = tpls;\n\t}\n\n\tTemplicated.prototype['get'] = function(which) {\n\t\treturn this.tpls[which];\n\t}\n\n\treturn new Templicated(" + JSON.stringify(views.reduce(function (r, view) {
                 return r[view.mangle] = view.compiled, r;
-            }, {})) + ");\n\t\t\t\t})();\n\t\t\t";
+            }, {})) + ");\n})();\n\t\t\t");
         }().toString();
         views.forEach(function (view) {
             _this.source = _this.source.replace(new RegExp('[\'"]@tpl\\.' + view.name + '[\'"]', 'g'), '$templicated.get(\'' + view.mangle + '\')');
