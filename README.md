@@ -8,20 +8,26 @@ Templicated
 A build step that manages [Jade templates](http://jade-lang.com/) for use in JavaScript applications. [DEMO](https://github.com/maraisr/waybackthen)
 
 ## Installation
+via [npm](https://www.npmjs.com/)
+
 ```sh
 npm i templicated --save
 ```
 
 ## Example build step
-```JavaScript
+```js
+var templicated = require('templicated');
+
+// Some input, Buffer or string
 var input = 'console.log("@tpl.Master");';
 
+// Compile
 var code = (new t.Templicated(input, {views: './views/'})).code;
 ```
 
-and the output...
+becomes
 
-```JavaScript
+```js
 var $templicated = (function() {
 	function Templicated(tpls) {
 		this.tpls = tpls;
@@ -38,16 +44,16 @@ console.log($templicated.get('1997400446'));
 ```
 
 ## Exmaple usuage with Vue
-```JavaScript
+```js
 var vm = new Vue({
 	el: '#app',
 	template: '@tpl.Master'
 });
 ```
 
-and the output...
+becomes
 
-```JavaScript
+```js
 var $templicated = (function() {
 	function Templicated(tpls) {
 		this.tpls = tpls;
