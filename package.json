@@ -1,6 +1,6 @@
 {
   "name": "templicated",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A build step that manages Jade templates for use in JavaScript applications.",
   "author": "Marais Rossouw",
   "license": "GPL-2.0",
