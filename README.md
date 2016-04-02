@@ -14,11 +14,27 @@ npm i templicated --save
 
 ## Example build step
 ```JavaScript
-var input = 'console.log("@tpl.Master")';
+var input = 'console.log("@tpl.Master");';
 
 var code = (new t.Templicated(input, {views: './views/'})).code;
+```
 
-// In the "views" directory, I'd have a Master.jade file.
+and the output...
+
+```JavaScript
+var $templicated = (function() {
+	function Templicated(tpls) {
+		this.tpls = tpls;
+	}
+
+	Templicated.prototype['get'] = function(which) {
+		return this.tpls[which];
+	}
+
+	return new Templicated({"1997400446":"<h1>Hello World</h1>"});
+})();
+
+console.log($templicated.get('1997400446'));
 ```
 
 ## Exmaple usuage with Vue
@@ -27,9 +43,30 @@ var vm = new Vue({
 	el: '#app',
 	template: '@tpl.Master'
 });
-
-// And then this file ran through Templicated
 ```
+
+and the output...
+
+```JavaScript
+var $templicated = (function() {
+	function Templicated(tpls) {
+		this.tpls = tpls;
+	}
+
+	Templicated.prototype['get'] = function(which) {
+		return this.tpls[which];
+	}
+
+	return new Templicated({"1997400446":"<h1>Hello World</h1>"});
+})();
+
+var vm = new Vue({
+	el: '#app',
+	template: $templicated.get('1997400446')
+});
+```
+
+---
 
 ## API
 
@@ -43,7 +80,9 @@ Returns a Buffer of the new source with Jade templates.
 #### .code: string
 Returns a string of the new source with Jade templates.
 
-### Build
+---
+
+## Build
 - `npm i tsc typings -g`
 - `npm i`
 - `typings i`
