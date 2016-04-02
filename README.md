@@ -22,7 +22,7 @@ var templicated = require('templicated');
 var input = 'console.log("@tpl.Master");';
 
 // Compile
-var code = (new t.Templicated(input, {views: './views/'})).code;
+var code = (new templicated.Templicated(input, {views: './views/'})).code;
 ```
 
 becomes
