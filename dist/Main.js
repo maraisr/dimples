@@ -1,5 +1,4 @@
 /// <reference path="../typings/main.d.ts" />
-"use strict";
 var Views_1 = require('./Views');
 var Templicated = (function () {
     function Templicated(source, config) {
@@ -41,5 +40,5 @@ var Templicated = (function () {
         configurable: true
     });
     return Templicated;
-}());
+})();
 exports.Templicated = Templicated;

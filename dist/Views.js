@@ -1,4 +1,3 @@
-"use strict";
 var jade = require('jade');
 var fs = require('graceful-fs');
 var Views = (function () {
@@ -19,7 +18,7 @@ var Views = (function () {
         }).pop();
     };
     return Views;
-}());
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Views;
 var View = (function () {
@@ -44,4 +43,4 @@ var View = (function () {
         configurable: true
     });
     return View;
-}());
+})();
