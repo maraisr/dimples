@@ -5,7 +5,7 @@ Templicated
 [![License](https://img.shields.io/npm/l/templicated.svg?style=flat-square)](https://github.com/maraisr/templicated/blob/master/LICENSE.md)
 
 ## Intro
-A build step that manages [Jade templates](http://jade-lang.com/) for use in JavaScript applications. [DEMO](https://github.com/maraisr/waybackthen)
+A build step that manages [Jade templates](http://jade-lang.com/) for use in JavaScript applications. Here's a [demo](https://github.com/maraisr/waybackthen) of it being used.
 
 ## Installation
 via [npm](https://www.npmjs.com/)
@@ -16,13 +16,22 @@ npm i templicated --save
 
 ## Example build step
 ```js
-var templicated = require('templicated');
+var templicated = require('templicated'),
+	fs = require('fs');
 
-// Some input, Buffer or string
-var input = 'console.log("@tpl.Master");';
+fs.readFile('app.js', function(e, input) {
+	if (e !== null) {
+		throw e;
+	}
 
-// Compile
-var code = (new templicated.Templicated(input, {views: './views/'})).code;
+	var code = (
+		new t.Templicated(input, {
+			views: './views/'
+		})
+	).code;
+
+	fs.writeFile('output.js', code);
+});
 ```
 
 becomes
