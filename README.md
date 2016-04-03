@@ -25,7 +25,7 @@ fs.readFile('app.js', function(e, input) {
 	}
 
 	var code = (
-		new t.Templicated(input, {
+		new templicated.Templicated(input, {
 			views: './views/'
 		})
 	).code;
