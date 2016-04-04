@@ -1,5 +1,5 @@
-import jade = require('jade');
-import fs = require('graceful-fs');
+var jade = require('jade');
+var fs = require('graceful-fs');
 
 import {Config} from './Common';
 

@@ -1,6 +1,6 @@
 /// <reference path="../typings/main.d.ts" />
 
-import fs = require('graceful-fs');
+var fs = require('graceful-fs');
 
 import {Config, has} from './Common';
 

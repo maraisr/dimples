@@ -1,7 +1,7 @@
 var chai = require('chai'),
 	expect = chai.expect;
 
-var templicated = require('../dist/Main.js').Templicated;
+var templicated = require('../dist/templicated.js').Templicated;
 
 var config = { views: 'spec/helpers/views/' };
 
