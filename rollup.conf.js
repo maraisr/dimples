@@ -13,5 +13,6 @@ module.exports = {
 	],
 	format: 'cjs',
 	moduleName: 'Templicated',
-	moduleId: 'templicated'
+	moduleId: 'templicated',
+	sourceMap: 'inline'
 };
