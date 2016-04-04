@@ -58,7 +58,7 @@ var $dimples = (function() {
 console.log($dimples.get('1997400446'));
 ```
 
-## Exmaple usuage with Vue
+## Example usuage with Vue
 ```js
 var vm = new Vue({
 	el: '#app',
