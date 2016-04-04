@@ -6,7 +6,7 @@
 	"license": "GPL-2.0",
 	"main": "dist/Main.js",
 	"scripts": {
-		"test": "mocha spec/Main.spec.js",
+		"test": "mocha spec/*.spec.js",
 		"clean": "rm -rf dist/*",
 		"build": "npm run clean && tsc"
 	},
@@ -22,9 +22,9 @@
 		"template",
 		"management",
 		"template management",
+		"template builder",
 		"jade",
-		"vue",
-		"template builder"
+		"vue"
 	],
 	"dependencies": {
 		"graceful-fs": "^4.1.3",
