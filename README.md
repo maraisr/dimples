@@ -3,7 +3,7 @@
 		<img height="240" width="240" src="http://dimples.io/static/dimples.svg">
 	</a>
 	<h1 align="center">Dimples</h1>
-	<p align="center">JavaScript HTML templates can be just as cute as dimples!</p>
+	<p align="center">JavaScript and HTML templates can be just as cute as pair of dimples!</p>
 </p>
 
 [![NPM version](https://img.shields.io/npm/v/dimples.svg?style=flat-square)](https://www.npmjs.com/package/dimples)
