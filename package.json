@@ -1,37 +1,37 @@
 {
-	"name": "templicated",
-	"version": "0.1.0",
-	"description": "A build step that manages Jade templates for use in JavaScript applications.",
-	"author": "Marais Rossouw",
-	"license": "GPL-2.0",
-	"main": "dist/Main.js",
-	"scripts": {
-		"test": "mocha spec/*.spec.js",
-		"clean": "rm -rf dist/*",
-		"build": "npm run clean && tsc"
-	},
-	"homepage": "https://github.com/maraisr/templicated#readme",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/maraisr/templicated.git"
-	},
-	"bugs": {
-		"url": "https://github.com/maraisr/templicated/issues"
-	},
-	"keywords": [
-		"template",
-		"management",
-		"template management",
-		"template builder",
-		"jade",
-		"vue"
-	],
-	"dependencies": {
-		"graceful-fs": "^4.1.3",
-		"jade": "^1.11.0"
-	},
-	"devDependencies": {
-		"chai": "^3.5.0",
-		"mocha": "^2.4.5"
-	}
+  "name": "templicated",
+  "version": "0.1.1",
+  "description": "A build step that manages Jade templates for use in JavaScript applications.",
+  "author": "Marais Rossouw",
+  "license": "GPL-2.0",
+  "main": "dist/Main.js",
+  "scripts": {
+    "test": "mocha spec/*.spec.js",
+    "clean": "rm -rf dist/*",
+    "build": "npm run clean && tsc"
+  },
+  "homepage": "https://github.com/maraisr/templicated#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maraisr/templicated.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maraisr/templicated/issues"
+  },
+  "keywords": [
+    "template",
+    "management",
+    "template management",
+    "template builder",
+    "jade",
+    "vue"
+  ],
+  "dependencies": {
+    "graceful-fs": "^4.1.3",
+    "jade": "^1.11.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
 }
