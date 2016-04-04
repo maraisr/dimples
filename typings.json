@@ -6,6 +6,8 @@
 	},
 	"ambientDependencies": {
 		"jade": "registry:dt/jade#0.0.0+20160316155526",
-		"node": "registry:dt/node#4.0.0+20160319033040"
+		"node": "registry:dt/node#4.0.0+20160319033040",
+		"source-map": "registry:dt/source-map#0.0.0+20160317120654",
+		"uglify-js": "registry:dt/uglify-js#2.6.1+20160316155526"
 	}
 }

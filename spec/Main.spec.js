@@ -3,7 +3,7 @@ var chai = require('chai'),
 
 var dimples = require('../dist/dimples.js').Dimples;
 
-var config = { views: 'spec/helpers/views/' };
+var config = { views: 'spec/helpers/views/', compress: true };
 
 describe('Creation', function() {
 	it('requires a string or Buffer source', function() {

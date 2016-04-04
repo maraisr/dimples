@@ -32,7 +32,8 @@ fs.readFile('app.js', function(e, input) {
 
 	var code = (
 		new dimples.Dimples(input, {
-			views: './views/'
+			views: './views/',
+			compress: false
 		})
 	).code;
 
@@ -43,48 +44,38 @@ fs.readFile('app.js', function(e, input) {
 becomes
 
 ```js
-var $dimples = (function() {
-	function Dimples(tpls) {
+var $dimples = (function(dimples) {
+	if (dimples == void 0) {
+		function Dimples() {
+			this.cache = new Array();
+		}
+
+		Dimples.prototype['get'] = function(what,uid) {
+			uid = (typeof uid === 'undefined') ? 0 : uid;
+			return this.cache[uid].get(what);
+		}
+
+		Dimples.prototype['add'] = function(uid,factory) {
+			this.cache[uid] = factory;
+		}
+
+		dimples = new Dimples();
+	}
+
+	function Factory(tpls) {
 		this.tpls = tpls;
 	}
 
-	Dimples.prototype['get'] = function(which) {
-		return this.tpls[which];
+	Factory.prototype['get'] = function(id) {
+		return this.tpls[id];
 	}
 
-	return new Dimples({"1997400446":"<h1>Hello World</h1>"});
-})();
+	dimples.add(0, new Factory({"1997400446":"<h1>Hello World</h1>"}));
 
-console.log($dimples.get('1997400446'));
-```
+	return dimples;
+})($dimples);
 
-## Example usuage with Vue
-```js
-var vm = new Vue({
-	el: '#app',
-	template: '@tpl.Master'
-});
-```
-
-becomes
-
-```js
-var $dimples = (function() {
-	function Dimples(tpls) {
-		this.tpls = tpls;
-	}
-
-	Dimples.prototype['get'] = function(which) {
-		return this.tpls[which];
-	}
-
-	return new Dimples({"1997400446":"<h1>Hello World</h1>"});
-})();
-
-var vm = new Vue({
-	el: '#app',
-	template: $dimples.get('1997400446')
-});
+console.log($dimples.get('1997400446',0));
 ```
 
 ---
@@ -93,7 +84,7 @@ var vm = new Vue({
 
 ### constructor(input: Buffer|string, options: Config)
 `input` is either a Buffer or a string of the source JavaScript
-`options` is an object containing 1 required property: `views` which is the directory of where to start finding templates.
+`options` is an object containing 1 required property: `views` which is the directory of where to start finding templates. Also specify a `compress` property, which will compress the output of the dimples manager.
 
 #### .compile(void): Buffer
 Returns a Buffer of the new source with Jade templates.
