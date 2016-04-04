@@ -1,22 +1,22 @@
 {
-	"name": "templicated",
+	"name": "dimples",
 	"version": "0.1.1",
 	"description": "A build step that manages Jade templates for use in JavaScript applications.",
 	"author": "Marais Rossouw",
 	"license": "GPL-2.0",
-	"main": "dist/templicated.js",
+	"main": "dist/dimples.js",
 	"scripts": {
 		"test": "mocha spec/*.spec.js",
 		"clean": "rm -rf dist/* tmp/*",
 		"build": "npm run clean && tsc && rollup -c rollup.conf.js"
 	},
-	"homepage": "https://github.com/maraisr/templicated#readme",
+	"homepage": "https://github.com/maraisr/dimples#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/maraisr/templicated.git"
+		"url": "git+https://github.com/maraisr/dimples.git"
 	},
 	"bugs": {
-		"url": "https://github.com/maraisr/templicated/issues"
+		"url": "https://github.com/maraisr/dimples/issues"
 	},
 	"keywords": [
 		"template",

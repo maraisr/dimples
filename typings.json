@@ -1,5 +1,5 @@
 {
-	"name": "templicated",
+	"name": "dimples",
 	"version": false,
 	"dependencies": {
 		"graceful-fs": "registry:npm/graceful-fs#4.0.0+20160211003958"

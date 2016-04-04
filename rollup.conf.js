@@ -3,7 +3,7 @@ var babel = require('rollup-plugin-babel'),
 
 module.exports = {
 	entry: 'tmp/Main.js',
-	dest: 'dist/templicated.js',
+	dest: 'dist/dimples.js',
 	plugins: [
 		includePaths({
 			paths: ['tmp'],
@@ -12,7 +12,7 @@ module.exports = {
 		babel()
 	],
 	format: 'cjs',
-	moduleName: 'Templicated',
-	moduleId: 'templicated',
+	moduleName: 'Dimples',
+	moduleId: 'dimples',
 	sourceMap: 'inline'
 };

@@ -1,9 +1,9 @@
-Templicated
-===========
+Dimples
+=======
 
-[![NPM version](https://img.shields.io/npm/v/templicated.svg?style=flat-square)](https://www.npmjs.com/package/templicated)
-[![Travis](https://img.shields.io/travis/maraisr/templicated.svg?style=flat-square)](https://travis-ci.org/maraisr/templicated)
-[![License](https://img.shields.io/npm/l/templicated.svg?style=flat-square)](https://github.com/maraisr/templicated/blob/master/LICENSE.md)
+[![NPM version](https://img.shields.io/npm/v/dimples.svg?style=flat-square)](https://www.npmjs.com/package/dimples)
+[![Travis](https://img.shields.io/travis/maraisr/dimples.svg?style=flat-square)](https://travis-ci.org/maraisr/dimples)
+[![License](https://img.shields.io/npm/l/dimples.svg?style=flat-square)](https://github.com/maraisr/dimples/blob/master/LICENSE.md)
 
 ## Intro
 A build step that manages [Jade templates](http://jade-lang.com/) for use in JavaScript applications. Here's a [demo](https://github.com/maraisr/waybackthen) of it being used.
@@ -12,12 +12,12 @@ A build step that manages [Jade templates](http://jade-lang.com/) for use in Jav
 via [npm](https://www.npmjs.com/)
 
 ```sh
-npm i templicated --save
+npm i dimples --save
 ```
 
 ## Example build step
 ```js
-var templicated = require('templicated'),
+var dimples = require('dimples'),
 	fs = require('fs');
 
 fs.readFile('app.js', function(e, input) {
@@ -26,7 +26,7 @@ fs.readFile('app.js', function(e, input) {
 	}
 
 	var code = (
-		new templicated.Templicated(input, {
+		new dimples.Dimples(input, {
 			views: './views/'
 		})
 	).code;
@@ -38,19 +38,19 @@ fs.readFile('app.js', function(e, input) {
 becomes
 
 ```js
-var $templicated = (function() {
-	function Templicated(tpls) {
+var $dimples = (function() {
+	function Dimples(tpls) {
 		this.tpls = tpls;
 	}
 
-	Templicated.prototype['get'] = function(which) {
+	Dimples.prototype['get'] = function(which) {
 		return this.tpls[which];
 	}
 
-	return new Templicated({"1997400446":"<h1>Hello World</h1>"});
+	return new Dimples({"1997400446":"<h1>Hello World</h1>"});
 })();
 
-console.log($templicated.get('1997400446'));
+console.log($dimples.get('1997400446'));
 ```
 
 ## Exmaple usuage with Vue
@@ -64,21 +64,21 @@ var vm = new Vue({
 becomes
 
 ```js
-var $templicated = (function() {
-	function Templicated(tpls) {
+var $dimples = (function() {
+	function Dimples(tpls) {
 		this.tpls = tpls;
 	}
 
-	Templicated.prototype['get'] = function(which) {
+	Dimples.prototype['get'] = function(which) {
 		return this.tpls[which];
 	}
 
-	return new Templicated({"1997400446":"<h1>Hello World</h1>"});
+	return new Dimples({"1997400446":"<h1>Hello World</h1>"});
 })();
 
 var vm = new Vue({
 	el: '#app',
-	template: $templicated.get('1997400446')
+	template: $dimples.get('1997400446')
 });
 ```
 
@@ -105,6 +105,6 @@ Returns a string of the new source with Jade templates.
 - `npm run build`
 
 ## License
-[GPL-2.0](https://github.com/maraisr/templicated/blob/master/LICENSE.md)
+[GPL-2.0](https://github.com/maraisr/dimples/blob/master/LICENSE.md)
 
 Copyright(c) 2016 Marais Rossouw

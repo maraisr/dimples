@@ -6,7 +6,7 @@ import {Config, has} from './Common';
 
 import Views, {ViewInterface} from './Views';
 
-export class Templicated {
+export class Dimples {
 	private source: string;
 	private config: Config;
 	public views: Views;
@@ -15,14 +15,14 @@ export class Templicated {
 		this.source = (source instanceof Buffer) ?  source.toString('utf-8') : source
 
 		if (this.source == void 0 || this.source == '') {
-			throw new ReferenceError('Templicated: No source passed.');
+			throw new ReferenceError('Dimples: No source passed.');
 		}
 
 		this.source = this.source.trim();
 		this.config = config;
 
 		if (!has(this.config, 'views')) {
-			throw new ReferenceError('Templicated: No views folder defined.');
+			throw new ReferenceError('Dimples: No views folder defined.');
 		}
 
 		this.views = new Views(this.config);
@@ -50,16 +50,16 @@ export class Templicated {
 	private sourceAugment(views: Array<ViewInterface>): Buffer {
 		var tplFunc: string = function() {
 			return (`
-var $templicated = (function() {
-	function Templicated(tpls) {
+var $dimples = (function() {
+	function Dimples(tpls) {
 		this.tpls = tpls;
 	}
 
-	Templicated.prototype['get'] = function(which) {
+	Dimples.prototype['get'] = function(which) {
 		return this.tpls[which];
 	}
 
-	return new Templicated(${JSON.stringify(views.reduce((r: any, view: ViewInterface) => {
+	return new Dimples(${JSON.stringify(views.reduce((r: any, view: ViewInterface) => {
 		return r[view.mangle] = view.compiled, r;
 	}, {}))});
 })();
@@ -67,7 +67,7 @@ var $templicated = (function() {
 		} ().toString();
 
 		views.forEach((view: ViewInterface) => {
-			this.source = this.source.replace(new RegExp('[\'"]@tpl\\.' + view.name + '[\'"]', 'g'), '$templicated.get(\'' + view.mangle + '\')');
+			this.source = this.source.replace(new RegExp('[\'"]@tpl\\.' + view.name + '[\'"]', 'g'), '$dimples.get(\'' + view.mangle + '\')');
 		});
 
 		this.source = tplFunc + this.source;
