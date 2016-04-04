@@ -2,7 +2,7 @@
 
 import fs = require('graceful-fs');
 
-import {Config} from './Common';
+import {Config, has} from './Common';
 
 import Views, {ViewInterface} from './Views';
 
@@ -12,8 +12,18 @@ export class Templicated {
 	public views: Views;
 
 	constructor(source: Buffer|string, config: Config) {
-		this.source = (source instanceof Buffer) ?  source.toString('utf-8') : source;
+		this.source = (source instanceof Buffer) ?  source.toString('utf-8') : source
+
+		if (this.source == void 0 || this.source == '') {
+			throw new ReferenceError('Templicated: No source passed.');
+		}
+
+		this.source = this.source.trim();
 		this.config = config;
+
+		if (!has(this.config, 'views')) {
+			throw new ReferenceError('Templicated: No views folder defined.');
+		}
 
 		this.views = new Views(this.config);
 	}

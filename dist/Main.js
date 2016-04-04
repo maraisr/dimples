@@ -1,9 +1,18 @@
 /// <reference path="../typings/main.d.ts" />
+"use strict";
+var Common_1 = require('./Common');
 var Views_1 = require('./Views');
 var Templicated = (function () {
     function Templicated(source, config) {
         this.source = (source instanceof Buffer) ? source.toString('utf-8') : source;
+        if (this.source == void 0 || this.source == '') {
+            throw new ReferenceError('Templicated: No source passed.');
+        }
+        this.source = this.source.trim();
         this.config = config;
+        if (!Common_1.has(this.config, 'views')) {
+            throw new ReferenceError('Templicated: No views folder defined.');
+        }
         this.views = new Views_1.default(this.config);
     }
     Templicated.prototype.compile = function () {
@@ -40,5 +49,5 @@ var Templicated = (function () {
         configurable: true
     });
     return Templicated;
-})();
+}());
 exports.Templicated = Templicated;

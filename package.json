@@ -6,7 +6,7 @@
 	"license": "GPL-2.0",
 	"main": "dist/Main.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"test": "mocha spec/Main.spec.js",
 		"clean": "rm -rf dist/*",
 		"build": "npm run clean && tsc"
 	},
@@ -29,5 +29,9 @@
 	"dependencies": {
 		"graceful-fs": "^4.1.3",
 		"jade": "^1.11.0"
+	},
+	"devDependencies": {
+		"chai": "^3.5.0",
+		"mocha": "^2.4.5"
 	}
 }
