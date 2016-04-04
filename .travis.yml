@@ -3,6 +3,8 @@ node_js:
   - "5.10.0"
   - "5.6.0"
 
+before_script: npm prune
+
 script: npm test
 
 cache:
