@@ -2,6 +2,7 @@ Templicated
 ===========
 
 [![NPM version](https://img.shields.io/npm/v/templicated.svg?style=flat-square)](https://www.npmjs.com/package/templicated)
+[![Travis](https://img.shields.io/travis/maraisr/templicated.svg?style=flat-square)](https://travis-ci.org/maraisr/templicated)
 [![License](https://img.shields.io/npm/l/templicated.svg?style=flat-square)](https://github.com/maraisr/templicated/blob/master/LICENSE.md)
 
 ## Intro
