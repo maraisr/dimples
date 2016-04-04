@@ -1,5 +1,10 @@
-Dimples
-=======
+<p align="center">
+	<a href="https://github.com/maraisr/dimples">
+		<img height="240" width="240" src="http://dimples.io/static/dimples.svg">
+	</a>
+	<h1 align="center">Dimples</h1>
+	<p align="center">JavaScript HTML templates can be just as cute as dimples!</p>
+</p>
 
 [![NPM version](https://img.shields.io/npm/v/dimples.svg?style=flat-square)](https://www.npmjs.com/package/dimples)
 [![Travis](https://img.shields.io/travis/maraisr/dimples.svg?style=flat-square)](https://travis-ci.org/maraisr/dimples)
