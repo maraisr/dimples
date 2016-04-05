@@ -5,9 +5,14 @@ node_js:
   - "4"
   - "5"
 
-before_script: npm prune
+before_script:
+  - npm prune
 
-script: npm test
+script:
+  - npm test
+
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/.bin/codecov
 
 cache:
   directories:
