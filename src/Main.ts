@@ -31,9 +31,12 @@ export class Dimples {
 		if (!has(this.config, 'compress')) {
 			this.config.compress = true;
 		}
+
 		if (!has(this.config, 'views')) {
 			throw new ReferenceError('Dimples: No views folder defined.');
 		}
+
+		this.config.jades = this.config.views + '**/*.jade';
 
 		this.views = new Views(this.config);
 	}

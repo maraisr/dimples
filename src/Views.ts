@@ -1,5 +1,6 @@
-var jade = require('jade');
-var fs = require('graceful-fs');
+var jade = require('jade'),
+	fs = require('graceful-fs'),
+	glob = require('globby');
 
 import {Config} from './Common';
 
@@ -19,10 +20,15 @@ export default class Views {
 	}
 
 	private init(): Array<View> {
-		// TODO: Need this.config.views to also allow glob file matching
-		return fs.readdirSync(this.config.views).map((path) => {
-			return new View(path, this.config);
+		var returns: Array<View> = new Array();
+
+		glob.sync(this.config.jades).forEach((path: string) => {
+			if (path.match(/\.jade$/)) {
+				returns.push(new View(path, this.config));
+			}
 		});
+
+		return returns;
 	}
 
 	find(name: string): View {
@@ -41,9 +47,9 @@ class View implements ViewInterface {
 	constructor(path: string, config: Config) {
 		this.path = path;
 
-		this.compiled = jade.compile(fs.readFileSync(config.views + this.path, 'utf-8'))();
+		this.compiled = jade.compile(fs.readFileSync(this.path, 'utf-8'))();
 
-		this.name = this.path.replace(/\.jade/, '').trim();
+		this.name = this.path.replace(config.views, '').replace(/\.jade/, '').trim();
 	}
 
 	get mangle(): number {

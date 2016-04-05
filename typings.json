@@ -2,6 +2,7 @@
 	"name": "dimples",
 	"version": false,
 	"dependencies": {
+		"globby": "registry:npm/globby#3.0.0+20160211003958",
 		"graceful-fs": "registry:npm/graceful-fs#4.0.0+20160211003958"
 	},
 	"ambientDependencies": {

@@ -39,7 +39,6 @@ describe('Creation', function() {
 	});
 });
 
-
 describe('Compile', function() {
 	describe('jade', function() {
 		it('finds Master.jade', function() {
@@ -50,11 +49,4 @@ describe('Compile', function() {
 			expect(tpl).property('name', 'Master');
 		});
 	});
-
-	describe('eval of code output', function() {
-		var input = '\'@tpl.Master\'',
-			t = new dimples(new Buffer(input), config);
-
-		expect(eval(t.code)).to.equal('<h1>Hello World</h1>');
-	})
 });

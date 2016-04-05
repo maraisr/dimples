@@ -1,6 +1,7 @@
 export interface Config {
 	views: string;
 	compress: boolean;
+	jades: string;
 }
 
 export function has(object: Object, key: any) {

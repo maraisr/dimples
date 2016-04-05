@@ -27,6 +27,7 @@
     "vue"
   ],
   "dependencies": {
+    "globby": "^4.0.0",
     "graceful-fs": "^4.1.3",
     "jade": "^1.11.0",
     "uglify-js": "^2.6.2"
