@@ -63,38 +63,23 @@ export class Dimples {
 	private sourceAugment(views: Array<ViewInterface>): Buffer {
 		var tplFunc: string = function() {
 			return (`
-var $dimples = (function(dimples) {
-	if (dimples == void 0) {
-		function Dimples() {
-			this.cache = new Array();
+var $dimples = (function(d) {
+	return (d == void 0) ? ({
+		data: {},
+		get: function(i) {
+			return this.data[i];
+		},
+		add: function(tpls) {
+			for (var key in tpls) {
+				if (tpls.hasOwnProperty(key)) this.data[key] = tpls[key];
+			}
 		}
-
-		Dimples.prototype['get'] = function(what,uid) {
-			uid = (typeof uid === 'undefined') ? 0 : uid;
-			return this.cache[uid].get(what);
-		}
-
-		Dimples.prototype['add'] = function(uid,factory) {
-			this.cache[uid] = factory;
-		}
-
-		dimples = new Dimples();
-	}
-
-	function Factory(tpls) {
-		this.tpls = tpls;
-	}
-
-	Factory.prototype['get'] = function(id) {
-		return this.tpls[id];
-	}
-
-	dimples.add(${this.uid}, new Factory(${JSON.stringify(views.reduce((r: any, view: ViewInterface) => {
-					return r[view.mangle] = view.compiled, r;
-				}, {}))}));
-
-	return dimples;
+	}) : d;
 })($dimples);
+
+$dimples.add(${JSON.stringify(views.reduce((r: any, view: ViewInterface) => {
+		return r[view.mangle + this.uid] = view.compiled, r;
+	}, {}))});
 			`);
 		}.bind(this)().toString();
 
@@ -103,7 +88,7 @@ var $dimples = (function(dimples) {
 		}
 
 		views.forEach((view: ViewInterface) => {
-			this.source = this.source.replace(new RegExp('[\'"]@tpl\\.' + view.name + '[\'"]', 'g'), `$dimples.get('${view.mangle}',${this.uid})`);
+			this.source = this.source.replace(new RegExp('[\'"]@tpl\\.' + view.name + '[\'"]', 'g'), `$dimples.get(${view.mangle + this.uid})`);
 		});
 
 		this.source = tplFunc + this.source;

@@ -44,38 +44,23 @@ fs.readFile('app.js', function(e, input) {
 becomes
 
 ```js
-var $dimples = (function(dimples) {
-	if (dimples == void 0) {
-		function Dimples() {
-			this.cache = new Array();
+ar $dimples = (function(d) {
+	return (d == void 0) ? ({
+		data: {},
+		get: function(i) {
+			return this.data[i];
+		},
+		add: function(tpls) {
+			for (var key in tpls) {
+				if (tpls.hasOwnProperty(key)) this.data[key] = tpls[key];
+			}
 		}
-
-		Dimples.prototype['get'] = function(what,uid) {
-			uid = (typeof uid === 'undefined') ? 0 : uid;
-			return this.cache[uid].get(what);
-		}
-
-		Dimples.prototype['add'] = function(uid,factory) {
-			this.cache[uid] = factory;
-		}
-
-		dimples = new Dimples();
-	}
-
-	function Factory(tpls) {
-		this.tpls = tpls;
-	}
-
-	Factory.prototype['get'] = function(id) {
-		return this.tpls[id];
-	}
-
-	dimples.add(0, new Factory({"1997400446":"<h1>Hello World</h1>"}));
-
-	return dimples;
+	}) : d;
 })($dimples);
 
-console.log($dimples.get('1997400446',0));
+$dimples.add({"1997400449":"<h1>Hello World</h1>"});
+
+console.log($dimples.get(1997400449));
 ```
 
 ---
