@@ -7,8 +7,7 @@
 	"main": "dist/dimples.js",
 	"scripts": {
 		"clean": "rm -rf dist/* tmp/*",
-		"test": "mocha spec/*.spec.js",
-		"posttest": "istanbul cover _mocha spec/*.spec.js -R spec --root dist/",
+		"test": "istanbul cover _mocha spec/*.spec.js -R spec --root dist/",
 		"prebuild": "npm run clean",
 		"build": "tsc && rollup -c rollup.conf.js"
 	},

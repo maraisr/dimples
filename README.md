@@ -8,6 +8,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/dimples.svg?style=flat-square)](https://www.npmjs.com/package/dimples)
 [![Travis](https://img.shields.io/travis/maraisr/dimples.svg?style=flat-square)](https://travis-ci.org/maraisr/dimples)
+[![Codecov](https://img.shields.io/codecov/c/github/maraisr/dimples.svg?style=flat-square)](https://codecov.io/github/maraisr/dimples)
 [![License](https://img.shields.io/npm/l/dimples.svg?style=flat-square)](https://github.com/maraisr/dimples/blob/master/LICENSE.md)
 
 ## Intro
