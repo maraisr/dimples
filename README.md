@@ -44,7 +44,7 @@ fs.readFile('app.js', function(e, input) {
 becomes
 
 ```js
-ar $dimples = (function(d) {
+var $dimples = (function(d) {
 	return (d == void 0) ? ({
 		data: {},
 		get: function(i) {
