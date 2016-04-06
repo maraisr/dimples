@@ -43,10 +43,61 @@ describe('Compile', function() {
 	describe('jade', function() {
 		it('finds Master.jade', function() {
 			var input = 'console.log(\'@tpl.Master\');',
-				t = new dimples(new Buffer(input), config),
+				t = new dimples(input, config),
 				tpl = t.views.find('Master');
 
 			expect(tpl).property('name', 'Master');
+		});
+
+		it('finds a globbed jade file', function() {
+			var input = 'console.log(\'@tpl.partial/Profile\');',
+				t = new dimples(input, config),
+				tpl = t.views.find('partial/Profile');
+
+			expect(tpl).property('name', 'partial/Profile');
+		});
+	});
+
+	describe('output', function() {
+		it('has a template', function() {
+			var input = '\'@tpl.partial/Profile\'',
+				t = new dimples(input, config);
+
+			var data = (function() {
+				eval(t.code);
+
+				return $dimples.data;
+			})();
+
+			expect(Object.keys(data)).to.have.length(1);
+		});
+
+		describe('correct templates', function() {
+			it('spits out Master.jade', function() {
+				var input = 'var x = \'@tpl.Master\'',
+					t = new dimples(input, config);
+
+				var data = (function() {
+					eval(t.code);
+
+					return x;
+				})();
+
+				expect(data).to.equal('<h1>Hello World</h1>');
+			});
+
+			it('spits out partial/Profile.jade', function() {
+				var input = 'var x = \'@tpl.partial/Profile\'',
+					t = new dimples(input, config);
+
+				var data = (function() {
+					eval(t.code);
+
+					return x;
+				})();
+
+				expect(data).to.equal('<div class="profile__detail"><span class="name">John Smith</span></div>');
+			});
 		});
 	});
 });
