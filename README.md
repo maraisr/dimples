@@ -15,8 +15,8 @@
 A build step that manages [Jade templates](http://jade-lang.com/) for use in JavaScript applications. Here's a [demo](https://github.com/maraisr/waybackthen) of it being used.
 
 ## Installation
-via [npm](https://www.npmjs.com/)
 
+via [npm](https://www.npmjs.com/)
 ```sh
 npm i dimples --save
 ```
