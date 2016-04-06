@@ -47,7 +47,10 @@ class View implements ViewInterface {
 	constructor(path: string, config: Config) {
 		this.path = path;
 
-		this.compiled = jade.compile(fs.readFileSync(this.path, 'utf-8'))();
+		this.compiled = jade.compile(fs.readFileSync(this.path, 'utf-8'), {
+			filename: this.path,
+			cache: true
+		})();
 
 		this.name = this.path.replace(config.views, '').replace(/\.jade/, '').trim();
 	}

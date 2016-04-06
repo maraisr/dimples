@@ -1,9 +1,18 @@
 var chai = require('chai'),
+	jsdom = require('mocha-jsdom'),
 	expect = chai.expect;
 
 var dimples = require('../dist/dimples.js').Dimples;
 
 var config = { views: 'spec/helpers/views/', compress: true };
+
+jsdom();
+
+function toHtml(html) {
+	var cont = document.createElement('div');
+	cont.innerHTML = html;
+	return cont.childNodes;
+}
 
 describe('Creation', function() {
 	it('requires a string or Buffer source', function() {
@@ -83,7 +92,7 @@ describe('Compile', function() {
 					return x;
 				})();
 
-				expect(data).to.equal('<h1>Hello World</h1>');
+				expect(toHtml(data)[0].nodeName).to.equal('H1');
 			});
 
 			it('spits out partial/Profile.jade', function() {
@@ -96,7 +105,10 @@ describe('Compile', function() {
 					return x;
 				})();
 
-				expect(data).to.equal('<div class="profile__detail"><span class="name">John Smith</span></div>');
+				data = toHtml(data)[0];
+
+				expect(data.nodeName).to.equal('DIV');
+				expect(data.className).to.equal('profile');
 			});
 		});
 	});
