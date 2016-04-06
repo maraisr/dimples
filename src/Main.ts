@@ -66,8 +66,8 @@ export class Dimples {
 var $dimples = (function(d) {
 	return (d == void 0) ? ({
 		data: {},
-		get: function(i) {
-			return this.data[i];
+		get: function(a,b) {
+			return this.data[a](b);
 		},
 		add: function(tpls) {
 			for (var key in tpls) {
@@ -77,9 +77,9 @@ var $dimples = (function(d) {
 	}) : d;
 })($dimples);
 
-$dimples.add(${JSON.stringify(views.reduce((r: any, view: ViewInterface) => {
-		return r[view.mangle + this.uid] = view.compiled, r;
-	}, {}))});
+$dimples.add({${views.reduce((r: any, view: ViewInterface) => {
+		return r += (view.mangle + this.uid) +': ' + view.compiled +',', r;
+	}, '').replace(/\,$/, '')}});
 			`);
 		}.bind(this)().toString();
 

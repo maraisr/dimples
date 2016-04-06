@@ -48,8 +48,8 @@ becomes
 var $dimples = (function(d) {
 	return (d == void 0) ? ({
 		data: {},
-		get: function(i) {
-			return this.data[i];
+		get: function(a,b) {
+			return this.data[a](b);
 		},
 		add: function(tpls) {
 			for (var key in tpls) {
@@ -59,9 +59,16 @@ var $dimples = (function(d) {
 	}) : d;
 })($dimples);
 
-$dimples.add({"1997400449":"<h1>Hello World</h1>"});
+$dimples.add({1997400452: function template(locals) {
+	var buf = [];
+	var jade_mixins = {};
+	var jade_interp;
 
-console.log($dimples.get(1997400449));
+	buf.push("<h1>Hello World</h1>");;return buf.join("");
+}});
+
+document.body.innerHTML = $dimples.get(1997400452);
+
 ```
 
 ---
