@@ -35,6 +35,14 @@ describe('Creation', function() {
 				return (new dimples(input, config)).source;
 			} ()).to.equal(input);
 		});
+
+		it('returns a string', function() {
+			var input = '@tpl.Master';
+
+			expect(function() {
+				return (new dimples(input, config)).code;
+			} ()).to.be.a('string');
+		});
 	});
 
 	describe('#buffer', function() {
@@ -44,6 +52,14 @@ describe('Creation', function() {
 			expect(function() {
 				return (new dimples(new Buffer(input), config)).source;
 			} ()).to.equal(input);
+		});
+
+		it('returns a buffer', function() {
+			var input = '@tpl.Master';
+
+			expect(function() {
+				return (new dimples(input, config)).buffer;
+			} ()).to.be.an.instanceof(Buffer)
 		});
 	});
 });
@@ -79,6 +95,15 @@ describe('Compile', function() {
 			})();
 
 			expect(Object.keys(data)).to.have.length(1);
+		});
+
+		it('caches the same template used twice', function() {
+			var input = '\'@tpl.Master\'\n\'@tpl.Master\'',
+				t = new dimples(input, config);
+
+			t.code;
+
+			expect(Object.keys(t.views.views)).to.have.length(1);
 		});
 
 		describe('correct templates', function() {

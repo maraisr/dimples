@@ -2,7 +2,7 @@ var jade = require('jade'),
 	fs = require('graceful-fs'),
 	glob = require('globby');
 
-import {Config} from './Common';
+import {Config, has} from './Common';
 
 export interface ViewInterface {
 	name: string;
@@ -12,29 +12,25 @@ export interface ViewInterface {
 
 export default class Views {
 	private config: Config;
-	private views: Array<View>;
+
+	private views: Object = new Object();
 
 	constructor(config: Config) {
 		this.config = config;
-		this.views = this.init();
-	}
-
-	private init(): Array<View> {
-		var returns: Array<View> = new Array();
-
-		glob.sync(this.config.jades).forEach((path: string) => {
-			if (path.match(/\.jade$/)) {
-				returns.push(new View(path, this.config));
-			}
-		});
-
-		return returns;
 	}
 
 	find(name: string): View {
-		return this.views.filter((v: View): boolean => {
-			return v.name == name;
-		}).pop();
+		if (has(this.views, name)) {
+			return this.views[name];
+		}
+
+		let path: Array<string> = glob.sync(this.config.views + name + '.jade');
+
+		if (path.length == 1 && path[0].match(/\.jade$/)) {
+			return this.views[name] = new View(path[0], this.config);
+		}
+
+		return void 0;
 	}
 }
 

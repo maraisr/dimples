@@ -7,7 +7,7 @@ import {Config, has} from './Common';
 
 import Views, {ViewInterface} from './Views';
 
-let uid = 0;
+let uid: number = 0;
 
 export class Dimples {
 	private source: string;
@@ -26,7 +26,7 @@ export class Dimples {
 		this.source = this.source.trim();
 		this.uid = uid++;
 
-		this.config = config || <Config>{};
+		this.config = config || <Config>new Object();
 
 		if (!has(this.config, 'compress')) {
 			this.config.compress = true;
@@ -53,9 +53,12 @@ export class Dimples {
 			}
 
 			if (<string>m[1]) {
-				let viewName:string = <string>m[1];
+				let viewName: string = <string>m[1],
+					found: ViewInterface = this.views.find(viewName);
 
-				views.push(this.views.find(viewName));
+				if (found) {
+					views.push(found);
+				}
 			}
 		}
 
@@ -100,10 +103,5 @@ $dimples.add(${JSON.stringify(views.reduce((r: any, view: ViewInterface) => {
 
 	get buffer(): Buffer {
 		return new Buffer(this.sourceAugment());
-	}
-
-	// Legacy
-	compile(): Buffer {
-		return this.buffer;
 	}
 }
