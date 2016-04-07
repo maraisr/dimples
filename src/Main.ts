@@ -41,11 +41,11 @@ export class Dimples {
 		this.views = new Views(this.config);
 	}
 
-	compile(): Buffer {
+	private sourceAugment(): string {
 		let re: RegExp = /['"]@tpl\.(.*?)['"]/gm,
 			m: RegExpExecArray;
 
-		let viewFilesFound: Array<ViewInterface> = new Array();
+		let views: Array<ViewInterface> = new Array();
 
 		while ((m = re.exec(this.source)) !== null) {
 			if (m.index === re.lastIndex) {
@@ -55,14 +55,10 @@ export class Dimples {
 			if (<string>m[1]) {
 				let viewName:string = <string>m[1];
 
-				viewFilesFound.push(this.views.find(viewName));
+				views.push(this.views.find(viewName));
 			}
 		}
 
-		return this.sourceAugment(viewFilesFound);
-	}
-
-	private sourceAugment(views: Array<ViewInterface>): Buffer {
 		var tplFunc: string = function() {
 			return (`
 var $dimples = (function(d) {
@@ -95,10 +91,19 @@ $dimples.add(${JSON.stringify(views.reduce((r: any, view: ViewInterface) => {
 
 		this.source = tplFunc + this.source;
 
-		return new Buffer(this.source);
+		return this.source;
 	}
 
 	get code(): string {
-		return this.compile().toString();
+		return this.sourceAugment();
+	}
+
+	get buffer(): Buffer {
+		return new Buffer(this.sourceAugment());
+	}
+
+	// Legacy
+	compile(): Buffer {
+		return this.buffer;
 	}
 }
