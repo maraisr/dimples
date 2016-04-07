@@ -42,7 +42,7 @@ export class Dimples {
 	}
 
 	compile(): Buffer {
-		let re: RegExp = /['"]@tpl\.(.+)['"]/gm,
+		let re: RegExp = /['"]@tpl\.(.*?)['"]/gm,
 			m: RegExpExecArray;
 
 		let viewFilesFound: Array<ViewInterface> = new Array();
@@ -53,7 +53,9 @@ export class Dimples {
 			}
 
 			if (<string>m[1]) {
-				viewFilesFound.push(this.views.find(<string>m[1]));
+				let viewName:string = <string>m[1];
+
+				viewFilesFound.push(this.views.find(viewName));
 			}
 		}
 
@@ -66,8 +68,8 @@ export class Dimples {
 var $dimples = (function(d) {
 	return (d == void 0) ? ({
 		data: {},
-		get: function(a,b) {
-			return this.data[a](b);
+		get: function(a) {
+			return this.data[a];
 		},
 		add: function(tpls) {
 			for (var key in tpls) {
@@ -78,8 +80,8 @@ var $dimples = (function(d) {
 })($dimples);
 
 $dimples.add({${views.reduce((r: any, view: ViewInterface) => {
-		return r += (view.mangle + this.uid) +': ' + view.compiled +',', r;
-	}, '').replace(/\,$/, '')}});
+					return r += (view.mangle + this.uid) + ': \'' + view.compiled + '\',', r;
+				}, '').replace(/\,$/, '')}});
 			`);
 		}.bind(this)().toString();
 
