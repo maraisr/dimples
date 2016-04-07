@@ -79,9 +79,9 @@ var $dimples = (function(d) {
 	}) : d;
 })($dimples);
 
-$dimples.add({${views.reduce((r: any, view: ViewInterface) => {
-					return r += (view.mangle + this.uid) + ': \'' + view.compiled + '\',', r;
-				}, '').replace(/\,$/, '')}});
+$dimples.add(${JSON.stringify(views.reduce((r: any, view: ViewInterface) => {
+					return r[view.mangle + this.uid] = view.compiled, r;
+				}, {}))});
 			`);
 		}.bind(this)().toString();
 
