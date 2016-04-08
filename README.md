@@ -88,6 +88,6 @@ Returns a string of the new source with Jade templates.
 - `npm run build`
 
 ## License
-[GPL-2.0](https://github.com/maraisr/dimples/blob/master/LICENSE.md)
+[MIT](https://github.com/maraisr/dimples/blob/master/LICENSE.md)
 
 Copyright(c) 2016 Marais Rossouw

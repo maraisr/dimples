@@ -3,7 +3,7 @@
   "version": "0.1.10",
   "description": "A build step that manages Jade templates for use in JavaScript applications.",
   "author": "Marais Rossouw",
-  "license": "GPL-2.0",
+  "license": "MIT",
   "main": "dist/dimples.js",
   "scripts": {
     "clean": "rm -rf dist/* tmp/*",
