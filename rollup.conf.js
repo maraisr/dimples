@@ -2,7 +2,7 @@ var babel = require('rollup-plugin-babel'),
 	includePaths = require('rollup-plugin-includepaths');
 
 module.exports = {
-	entry: 'tmp/Main.js',
+	entry: 'tmp/Index.js',
 	dest: 'dist/dimples.js',
 	plugins: [
 		includePaths({

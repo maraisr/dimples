@@ -2,7 +2,7 @@ var chai = require('chai'),
 	jsdom = require('mocha-jsdom'),
 	expect = chai.expect;
 
-var dimples = require('../dist/dimples.js').Dimples;
+var dimples = require('../dist/dimples.js');
 
 var config = { views: 'spec/helpers/views/', compress: true };
 

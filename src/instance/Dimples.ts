@@ -1,22 +1,21 @@
-/// <reference path="../typings/main.d.ts" />
-
 var fs = require('graceful-fs'),
 	uglify = require('uglify-js');
 
-import {Config, has} from './Common';
+import {has} from '../util/Object';
 
-import Views, {ViewInterface} from './Views';
+import {Config} from '../Config';
+import Views, {ViewInterface} from './internal/Views';
 
 let uid: number = 0;
 
-export class Dimples {
+export default class Dimples {
 	private source: string;
 	private config: Config;
 	private uid: number;
 
 	public views: Views;
 
-	constructor(source: Buffer | string, config: Config) {
+	constructor(source: string | Buffer, config: Config) {
 		this.source = (source instanceof Buffer) ? source.toString('utf-8') : source
 
 		if (this.source == void 0 || this.source == '') {
@@ -35,8 +34,6 @@ export class Dimples {
 		if (!has(this.config, 'views')) {
 			throw new ReferenceError('Dimples: No views folder defined.');
 		}
-
-		this.config.jades = this.config.views + '**/*.jade';
 
 		this.views = new Views(this.config);
 	}

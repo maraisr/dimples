@@ -32,7 +32,7 @@ fs.readFile('app.js', function(e, input) {
 	}
 
 	var code = (
-		new dimples.Dimples(input, {
+		new dimples(input, {
 			views: './views/',
 			compress: false
 		})

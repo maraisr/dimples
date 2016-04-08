@@ -2,7 +2,8 @@ var jade = require('jade'),
 	fs = require('graceful-fs'),
 	glob = require('globby');
 
-import {Config, has} from './Common';
+import {Config} from '../../Config';
+import {has} from '../../util/Object';
 
 export interface ViewInterface {
 	name: string;
