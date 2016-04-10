@@ -12,7 +12,7 @@
 [![License](https://img.shields.io/npm/l/dimples.svg?style=flat-square)](https://github.com/maraisr/dimples/blob/master/LICENSE.md)
 
 ## Intro
-A build step that manages [Jade templates](http://jade-lang.com/) for use in JavaScript applications. Here's a [demo](https://github.com/maraisr/waybackthen) of it being used.
+A build step that manages [Pug templates](http://jade-lang.com/) for use in JavaScript applications. Here's a [demo](https://github.com/maraisr/waybackthen) of it being used.
 
 ## Installation
 
@@ -80,10 +80,10 @@ document.body.innerHTML = $dimples.get(1997400449);
 `options` is an object containing 1 required property: `views` which is the directory of where to start finding templates. Also specify a `compress` property, which will compress the output of the dimples manager.
 
 #### .compile(void): Buffer
-Returns a Buffer of the new source with Jade templates.
+Returns a Buffer of the new source with pug templates.
 
 #### .code: string
-Returns a string of the new source with Jade templates.
+Returns a string of the new source with pug templates.
 
 ---
 

@@ -1,4 +1,4 @@
-var jade = require('jade'),
+var pug = require('pug'),
 	fs = require('graceful-fs'),
 	glob = require('globby');
 
@@ -25,9 +25,9 @@ export default class Views {
 			return this.views[name];
 		}
 
-		let path: Array<string> = glob.sync(this.config.views + name + '.jade');
+		let path: Array<string> = glob.sync(this.config.views + name + '.pug');
 
-		if (path.length == 1 && path[0].match(/\.jade$/)) {
+		if (path.length == 1 && path[0].match(/\.pug$/)) {
 			return this.views[name] = new View(path[0], this.config);
 		}
 
@@ -44,12 +44,12 @@ class View implements ViewInterface {
 	constructor(path: string, config: Config) {
 		this.path = path;
 
-		this.compiled = jade.compile(fs.readFileSync(this.path, 'utf-8'), {
+		this.compiled = pug.compile(fs.readFileSync(this.path, 'utf-8'), {
 			filename: this.path,
 			cache: true
 		})();
 
-		this.name = this.path.replace(config.views, '').replace(/\.jade/, '').trim();
+		this.name = this.path.replace(config.views, '').replace(/\.pug/, '').trim();
 	}
 
 	get mangle(): number {

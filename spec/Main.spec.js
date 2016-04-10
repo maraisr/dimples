@@ -65,8 +65,8 @@ describe('Creation', function() {
 });
 
 describe('Compile', function() {
-	describe('jade', function() {
-		it('finds Master.jade', function() {
+	describe('pug', function() {
+		it('finds Master.pug', function() {
 			var input = 'console.log(\'@tpl.Master\');',
 				t = new dimples(input, config),
 				tpl = t.views.find('Master');
@@ -74,7 +74,7 @@ describe('Compile', function() {
 			expect(tpl).property('name', 'Master');
 		});
 
-		it('finds a globbed jade file', function() {
+		it('finds a globbed pug file', function() {
 			var input = 'console.log(\'@tpl.partial/Profile\');',
 				t = new dimples(input, config),
 				tpl = t.views.find('partial/Profile');
@@ -107,7 +107,7 @@ describe('Compile', function() {
 		});
 
 		describe('correct templates', function() {
-			it('spits out Master.jade', function() {
+			it('spits out Master.pug', function() {
 				var input = 'var x = \'@tpl.Master\'',
 					t = new dimples(input, config);
 
@@ -120,7 +120,7 @@ describe('Compile', function() {
 				expect(toHtml(data)[0].nodeName).to.equal('H1');
 			});
 
-			it('spits out partial/Profile.jade', function() {
+			it('spits out partial/Profile.pug', function() {
 				var input = 'var x = \'@tpl.partial/Profile\'',
 					t = new dimples(input, config);
 
