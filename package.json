@@ -1,6 +1,6 @@
 {
   "name": "dimples",
-  "version": "0.1.10",
+  "version": "0.2.0",
   "description": "A build step that manages Jade templates for use in JavaScript applications.",
   "author": "Marais Rossouw",
   "license": "MIT",
