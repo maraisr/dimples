@@ -21,13 +21,14 @@ via [npm](https://www.npmjs.com/)
 npm i dimples --save
 ```
 
-## Example build step
+## Example
 
-Input
+Input (`app.js`)
 ```js
 document.body.innerHTML = '@tpl.Master';
 ```
 
+build step
 ```js
 var dimples = require('dimples'),
 	fs = require('fs');
@@ -48,7 +49,7 @@ fs.readFile('app.js', function(e, input) {
 });
 ```
 
-becomes
+becomes (`output.js`)
 
 ```js
 var $dimples = (function(d) {
