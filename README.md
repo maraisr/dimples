@@ -22,6 +22,12 @@ npm i dimples --save
 ```
 
 ## Example build step
+
+Input
+```js
+document.body.innerHTML = '@tpl.Master';
+```
+
 ```js
 var dimples = require('dimples'),
 	fs = require('fs');
@@ -62,7 +68,6 @@ var $dimples = (function(d) {
 $dimples.add({1997400449: '<h1>Hello World</h1>'});
 
 document.body.innerHTML = $dimples.get(1997400449);
-
 ```
 
 ---
