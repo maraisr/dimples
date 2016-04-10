@@ -87,7 +87,7 @@ Returns a string of the new source with Jade templates.
 ---
 
 ## Build
-- `npm i tsc typings -g`
+- `npm i typscript typings -g`
 - `npm i`
 - `typings i`
 - `npm run build`
