@@ -1,7 +1,4 @@
 <p align="center">
-	<a href="https://github.com/maraisr/dimples">
-		<img height="240" width="240" src="http://dimples.io/static/dimples.svg">
-	</a>
 	<h1 align="center">Dimples</h1>
 	<p align="center">JavaScript and HTML templates can be just as cute as pair of dimples!</p>
 </p>
